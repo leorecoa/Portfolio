@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Process from './components/Process';
-import Projects from './components/Projects';
-import TechStack from './components/TechStack';
-import Contact from './components/Contact';
-import ParticleBackground from './components/ParticleBackground';
+import Navbar from './components/layout/Navbar';
+import Hero from './components/sections/Hero';
+import About from './components/sections/About';
+import Process from './components/sections/Process';
+import Projects from './components/sections/Projects';
+import TechStack from './components/sections/TechStack';
+import Contact from './components/sections/Contact';
+import ParticleBackground from './components/effects/ParticleBackground';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings2, MousePointer2 } from 'lucide-react';
 
@@ -18,20 +18,20 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground interactionRadius={radius} />
-      
+
       <Navbar />
-      
+
       <main>
         <Hero />
-        
+
         <About />
-        
+
         <Process />
-        
+
         <TechStack />
-        
+
         <Projects />
-        
+
         <Contact />
       </main>
 
@@ -49,16 +49,16 @@ const App: React.FC = () => {
                 <MousePointer2 size={16} />
                 <span className="text-xs font-bold uppercase tracking-widest font-space">Particle Interaction</span>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex justify-between text-[10px] text-white/40 uppercase font-bold tracking-tighter">
                   <span>Radius</span>
                   <span className="text-cyan-400">{radius}px</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="50" 
-                  max="400" 
+                <input
+                  type="range"
+                  min="50"
+                  max="400"
                   step="10"
                   value={radius}
                   onChange={(e) => setRadius(parseInt(e.target.value))}
@@ -72,7 +72,7 @@ const App: React.FC = () => {
           )}
         </AnimatePresence>
 
-        <button 
+        <button
           onClick={() => setShowSettings(!showSettings)}
           className={`p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
         >
@@ -89,7 +89,7 @@ const App: React.FC = () => {
           </span>
         </div>
       </div>
-      
+
       <div className="fixed bottom-10 right-28 z-50 hidden lg:block">
         {!showSettings && (
           <div className="flex flex-col gap-4 items-center">
