@@ -8,13 +8,20 @@ interface ButtonProps {
   className?: string;
   variant?: 'primary' | 'secondary' | 'ghost';
   href?: string;
+  target?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', variant = 'primary', href }) => {
+const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  onClick, 
+  className = '', 
+  variant = 'primary', 
+  href,
+  target
+}) => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   
-  // Configuração de mola para movimento ultra-suave (efeito magnético)
   const springConfig = { damping: 15, stiffness: 150, mass: 0.6 };
   const x = useSpring(0, springConfig);
   const y = useSpring(0, springConfig);
@@ -26,7 +33,6 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', vari
     const centerX = left + width / 2;
     const centerY = top + height / 2;
     
-    // Força magnética: o botão se desloca em direção ao mouse
     const moveX = (clientX - centerX) * 0.35;
     const moveY = (clientY - centerY) * 0.35;
     
@@ -38,10 +44,6 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', vari
     x.set(0);
     y.set(0);
     setIsHovered(false);
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
   };
 
   const variants = {
@@ -65,7 +67,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', vari
   const currentVariant = variants[variant];
 
   const buttonInner = (
-    <div className="relative flex items-center justify-center gap-3 px-10 py-4 font-space font-bold uppercase tracking-[0.2em] text-[10px] z-10">
+    <div className="relative flex items-center justify-center gap-3 px-8 py-3.5 font-space font-bold uppercase tracking-[0.2em] text-[10px] z-10 whitespace-nowrap">
       {children}
     </div>
   );
@@ -74,12 +76,11 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', vari
     <motion.div
       ref={buttonRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{ x, y }}
       className={`relative inline-block group ${className}`}
     >
-      {/* Spinner Border Effect (Visible on Hover) */}
       <AnimatePresence>
         {isHovered && variant !== 'ghost' && (
           <motion.div
@@ -100,16 +101,14 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', vari
       {href ? (
         <a 
           href={href} 
+          target={target}
+          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
           className={`block rounded-full relative overflow-hidden transition-all duration-500 ${currentVariant.base} ${isHovered ? currentVariant.hover : ''}`}
         >
-          {/* Background Filler to hide the rest of the spinner */}
           <div className={`absolute inset-[1px] rounded-full z-[1] ${variant === 'primary' ? 'bg-white' : 'bg-[#030303]'}`} />
           {buttonInner}
-          
-          {/* Subtle Inner Glow on Hover */}
           {isHovered && variant === 'primary' && (
              <motion.div 
-               layoutId="glow"
                className="absolute inset-0 bg-cyan-400/10 mix-blend-overlay z-[2]" 
              />
           )}

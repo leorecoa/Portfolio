@@ -49,19 +49,31 @@ const Contact: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10 mb-16">
-            <Button variant="primary" onClick={() => window.location.href = "mailto:contato@leandrojesse.com"}>
+            <Button variant="primary" href="mailto:contato@leandrojesse.com">
               Diga Olá <Send size={18} />
             </Button>
-            <Button variant="secondary" href={githubUrl}>
+            <Button variant="secondary" href={githubUrl} target="_blank">
               GitHub Profile
             </Button>
           </div>
 
           <div className="flex items-center justify-center gap-8">
-            <a href={githubUrl} target="_blank" rel="noreferrer" className="p-3 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all">
+            <a 
+              href={githubUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-4 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
+              aria-label="GitHub"
+            >
               <Github size={24} />
             </a>
-            <a href={linkedinUrl} target="_blank" rel="noreferrer" className="p-3 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all">
+            <a 
+              href={linkedinUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-4 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
+              aria-label="LinkedIn"
+            >
               <Linkedin size={24} />
             </a>
           </div>

@@ -5,7 +5,6 @@ import Button from './Button';
 import { Github, ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  // Configuração de mola equilibrada: rápida o suficiente para sentir a resposta, mas suave para manter a elegância
   const springConfig = { damping: 30, stiffness: 80, mass: 0.8 };
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
@@ -14,7 +13,6 @@ const Hero: React.FC = () => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      // Normaliza entre -0.5 e 0.5
       mouseX.set((clientX / innerWidth) - 0.5);
       mouseY.set((clientY / innerHeight) - 0.5);
     };
@@ -22,13 +20,10 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
-  // Transformações ajustadas para um movimento "médio" (mais perceptível que o anterior)
   const contentX = useTransform(mouseX, [-0.5, 0.5], [-45, 45]);
   const contentY = useTransform(mouseY, [-0.5, 0.5], [-45, 45]);
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [14, -14]); 
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-14, 14]);
-  
-  // Sombra dinâmica acompanhando o novo alcance
   const shadowX = useTransform(mouseX, [-0.5, 0.5], [25, -25]);
   const shadowY = useTransform(mouseY, [-0.5, 0.5], [25, -25]);
 
@@ -40,7 +35,6 @@ const Hero: React.FC = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20"
       style={{ perspective: '1400px' }}
     >
-      {/* Background Animado (Camada Inferior) */}
       <div className="absolute inset-0 z-0">
         <motion.div 
           animate={{ 
@@ -54,7 +48,6 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay"></div>
       </div>
 
-      {/* Bloco Central Interativo (O Banner) */}
       <motion.div 
         style={{ 
           x: contentX, 
@@ -104,7 +97,6 @@ const Hero: React.FC = () => {
           Orquestrando inteligência artificial para criar interfaces que parecem ter vindo de um futuro próximo.
         </motion.p>
 
-        {/* CTA Container com Efeito de Profundidade */}
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,17 +107,15 @@ const Hero: React.FC = () => {
           <Button variant="primary" href="#projects">
             Projetos <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button variant="secondary" href={githubUrl}>
+          <Button variant="secondary" href={githubUrl} target="_blank">
             <Github size={14} className="group-hover:rotate-12 transition-transform" /> Repositórios
           </Button>
           
-          {/* Decorações Figma */}
           <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-400/30"></div>
           <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-400/30"></div>
         </motion.div>
       </motion.div>
 
-      {/* Indicador de Mouse (Figma Style) - Posição sutilmente atrasada para efeito de rastro */}
       <motion.div 
         style={{ 
           x: useTransform(mouseX, [-0.5, 0.5], [-80, 80]), 
