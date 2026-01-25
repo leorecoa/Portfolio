@@ -7,7 +7,6 @@ import * as LucideIcons from 'lucide-react';
 const Process: React.FC = () => {
   return (
     <section className="py-32 px-4 relative overflow-hidden">
-      {/* Figma Canvas Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -39,7 +38,8 @@ const Process: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {PROCESS_STEPS.map((step, index) => {
-            const IconComponent = (LucideIcons as any)[step.icon] || LucideIcons.Zap;
+            const IconName = step.icon as keyof typeof LucideIcons;
+            const IconComponent = (LucideIcons[IconName] as any) || LucideIcons.Zap;
             return (
               <motion.div
                 key={index}
@@ -51,16 +51,13 @@ const Process: React.FC = () => {
                 style={{ transformStyle: 'preserve-3d' }}
                 className="group relative"
               >
-                {/* Background Shadow Effect */}
                 <div className={`absolute -inset-2 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-700`}></div>
                 
                 <div className="relative p-10 h-full glass-card rounded-[2.5rem] border border-white/5 hover:border-cyan-400/30 transition-all duration-700 overflow-hidden flex flex-col">
-                  {/* Step Number Badge */}
                   <div className="absolute top-8 right-8 text-[10px] font-mono text-white/10 group-hover:text-cyan-400/30 transition-colors font-bold tracking-widest">
                     0{index + 1}
                   </div>
 
-                  {/* Icon with Glowing Backdrop */}
                   <div className="mb-10 relative">
                     <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-20 blur-xl rounded-full scale-150 group-hover:scale-[2] transition-transform duration-700`}></div>
                     <div className="relative z-10 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-white/5 group-hover:border-cyan-400/40 text-white/50 group-hover:text-cyan-400 transition-all duration-500">
@@ -74,7 +71,6 @@ const Process: React.FC = () => {
                     {step.description}
                   </p>
                   
-                  {/* Tech Badges (Stack) */}
                   <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-white/5">
                     {step.tags.map(tag => (
                       <span key={tag} className="px-2 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[8px] font-mono uppercase tracking-widest text-white/30 group-hover:text-cyan-400/60 group-hover:border-cyan-400/10 transition-colors">
@@ -83,7 +79,6 @@ const Process: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Figma Selection Corners (Only visible on hover) */}
                   <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
