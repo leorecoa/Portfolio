@@ -89,28 +89,36 @@ const TechStack: React.FC = () => {
              return (
               <motion.div 
                 key={index} 
-                whileHover={{ y: -15, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                whileHover={{ 
+                  y: -25, 
+                  scale: 1.05,
+                  rotateZ: 1.5
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 className="flex flex-col gap-3 px-10 group cursor-default"
               >
-                {/* Figma Component Label */}
-                <div className="flex justify-between items-center px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-[8px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded">Component {index}</span>
-                  <span className="text-[8px] font-mono text-white/20">W: 240px</span>
-                </div>
-
-                <div className="flex items-center gap-8 p-10 glass-card rounded-3xl border border-white/5 transition-all duration-700 group-hover:border-cyan-400/50 group-hover:shadow-[0_30px_60px_rgba(34,211,238,0.15)] relative overflow-hidden backdrop-blur-md">
+                <div className="flex items-center gap-8 p-10 glass-card rounded-3xl border border-white/5 transition-all duration-700 group-hover:border-cyan-400/50 group-hover:shadow-[0_40px_80px_rgba(34,211,238,0.25)] relative overflow-hidden backdrop-blur-md">
                   {/* Design Grid Overlay with animated opacity based on scroll */}
                   <motion.div 
                     style={{ opacity: gridOpacity }}
                     className="absolute inset-0 pointer-events-none bg-[radial-gradient(#22d3ee_1px,transparent_1px)] [background-size:16px_16px]"
                   />
+
+                  {/* Shimmer/Reflection Effect on Hover */}
+                  <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                    <motion.div 
+                      initial={{ x: '-100%', skewX: -20 }}
+                      whileHover={{ x: '200%' }}
+                      transition={{ duration: 1.5, ease: "easeInOut" }}
+                      className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent z-0"
+                    />
+                  </div>
                   
-                  <div className="text-white/30 group-hover:text-cyan-400 transition-all duration-700 transform group-hover:scale-110 group-hover:rotate-12">
+                  <div className="text-white/30 group-hover:text-cyan-400 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12 z-10">
                     <IconComponent size={36} strokeWidth={1.5} />
                   </div>
                   
-                  <div className="flex flex-col">
+                  <div className="flex flex-col z-10">
                     <span className="text-3xl font-space font-bold text-white/70 group-hover:text-white transition-colors tracking-tight">
                       {item.name}
                     </span>
@@ -120,10 +128,10 @@ const TechStack: React.FC = () => {
                   </div>
 
                   {/* Corner Selection Handles (Figma Style) */}
-                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
-                  <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
-                  <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
-                  <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
+                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)] z-20"></div>
+                  <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)] z-20"></div>
+                  <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)] z-20"></div>
+                  <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(34,211,238,0.8)] z-20"></div>
                 </div>
               </motion.div>
             );
