@@ -11,6 +11,9 @@ export default {
         sans: ['Inter', 'sans-serif'],
         space: ['Space Grotesk', 'sans-serif'],
       },
+      animation: {
+        'spin-slow': 'spin 8s linear infinite',
+      }
     },
   },
   plugins: [],

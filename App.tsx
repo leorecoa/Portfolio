@@ -18,10 +18,10 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground interactionRadius={radius} />
-      
+
       <Navbar />
-      
-      <main>
+
+      <main className="relative">
         <Hero />
         <About />
         <Process />
@@ -43,16 +43,16 @@ const App: React.FC = () => {
                 <MousePointer2 size={16} />
                 <span className="text-xs font-bold uppercase tracking-widest font-space">Particle Interaction</span>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex justify-between text-[10px] text-white/40 uppercase font-bold tracking-tighter">
                   <span>Radius</span>
                   <span className="text-cyan-400">{radius}px</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="50" 
-                  max="400" 
+                <input
+                  type="range"
+                  min="50"
+                  max="400"
                   step="10"
                   value={radius}
                   onChange={(e) => setRadius(parseInt(e.target.value))}
@@ -63,7 +63,7 @@ const App: React.FC = () => {
           )}
         </AnimatePresence>
 
-        <button 
+        <button
           onClick={() => setShowSettings(!showSettings)}
           className={`p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
         >
@@ -79,7 +79,7 @@ const App: React.FC = () => {
           </span>
         </div>
       </div>
-      
+
       <style>{`
         .animate-spin-slow {
           animation: spin 8s linear infinite;

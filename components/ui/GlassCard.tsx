@@ -8,6 +8,7 @@ interface GlassCardProps extends Omit<HTMLMotionProps<"div">, "onDrag" | "onDrag
   className?: string;
   hoverEffect?: boolean;
   withCorners?: boolean;
+  enableSound?: boolean;
 }
 
 const GlassCard: React.FC<GlassCardProps> = ({ 
@@ -15,11 +16,46 @@ const GlassCard: React.FC<GlassCardProps> = ({
   className = '', 
   hoverEffect = true,
   withCorners = true,
+  enableSound = true,
+  onMouseEnter,
   ...props 
 }) => {
+  const playHoverSound = () => {
+    if (!enableSound) return;
+    
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+      
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      // Configuração para um "blip" futurista sutil (Tech Chirp)
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.05);
+      
+      gain.gain.setValueAtTime(0.015, ctx.currentTime); // Volume bem baixo (1.5%)
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+      
+      osc.start();
+      osc.stop(ctx.currentTime + 0.05);
+    } catch (error) {
+      // Falha silenciosa caso o navegador bloqueie o áudio
+    }
+  };
+
   return (
     <motion.div 
       {...(props as any)}
+      onMouseEnter={(e) => {
+        playHoverSound();
+        onMouseEnter?.(e);
+      }}
       className={`relative glass-card rounded-[2.5rem] border border-white/5 transition-all duration-700 overflow-hidden ${hoverEffect ? 'hover:border-cyan-400/30' : ''} ${className}`}
     >
       {children}
