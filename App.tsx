@@ -8,11 +8,8 @@ import Projects from './components/sections/Projects';
 import TechStack from './components/sections/TechStack';
 import Contact from './components/sections/Contact';
 import ParticleBackground from './components/effects/ParticleBackground';
-import GlassCard from './components/ui/GlassCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings2, MousePointer2 } from 'lucide-react';
-
-const MotionGlassCard = motion(GlassCard);
 
 const App: React.FC = () => {
   const [radius, setRadius] = useState(150);
@@ -21,10 +18,10 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground interactionRadius={radius} />
-
+      
       <Navbar />
-
-      <main className="relative">
+      
+      <main>
         <Hero />
         <About />
         <Process />
@@ -36,37 +33,37 @@ const App: React.FC = () => {
       <div className="fixed bottom-10 right-10 z-[110] flex flex-col items-end gap-4">
         <AnimatePresence>
           {showSettings && (
-            <MotionGlassCard
+            <motion.div
               initial={{ opacity: 0, x: 20, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 20, scale: 0.95 }}
-              className="p-6 rounded-3xl mb-2 w-64 border-cyan-400/20 backdrop-blur-xl"
+              className="glass-card p-6 rounded-3xl mb-2 w-64 border border-cyan-400/20 backdrop-blur-xl"
             >
               <div className="flex items-center gap-2 mb-4 text-cyan-400">
                 <MousePointer2 size={16} />
                 <span className="text-xs font-bold uppercase tracking-widest font-space">Particle Interaction</span>
               </div>
-
+              
               <div className="space-y-4">
                 <div className="flex justify-between text-[10px] text-white/40 uppercase font-bold tracking-tighter">
                   <span>Radius</span>
                   <span className="text-cyan-400">{radius}px</span>
                 </div>
-                <input
-                  type="range"
-                  min="50"
-                  max="400"
+                <input 
+                  type="range" 
+                  min="50" 
+                  max="400" 
                   step="10"
                   value={radius}
                   onChange={(e) => setRadius(parseInt(e.target.value))}
                   className="w-full accent-cyan-400 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer"
                 />
               </div>
-            </MotionGlassCard>
+            </motion.div>
           )}
         </AnimatePresence>
 
-        <button
+        <button 
           onClick={() => setShowSettings(!showSettings)}
           className={`p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
         >
@@ -82,6 +79,16 @@ const App: React.FC = () => {
           </span>
         </div>
       </div>
+      
+      <style>{`
+        .animate-spin-slow {
+          animation: spin 8s linear infinite;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };
