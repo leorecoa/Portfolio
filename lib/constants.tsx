@@ -1,7 +1,5 @@
 
-import React from 'react';
-import { Project, ProcessStep, TechItem } from './types';
-import { Github, Code2, BrainCircuit, Figma, Sparkles, Rocket } from 'lucide-react';
+import { Project, ProcessStep, TechItem } from '../types';
 
 export const PROJECTS: Project[] = [
   {

@@ -6,7 +6,6 @@ export interface Project {
   image: string;
   tags: string[];
   link: string;
-  // Optional GitHub metadata
   stars?: number;
   forks?: number;
 }
