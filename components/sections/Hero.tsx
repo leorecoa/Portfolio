@@ -84,14 +84,14 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 px-4"
           style={{ transform: 'translateZ(50px)' }}
         >
           <Button variant="primary" href="#projects" className="w-full sm:w-auto">
-            Projetos <ArrowRight size={14} strokeWidth={3} className="ml-1" />
+            Explorar Projetos <ArrowRight size={14} strokeWidth={3} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button variant="secondary" href={githubUrl} target="_blank" className="w-full sm:w-auto">
-            <Github size={14} className="mr-1" /> Repositórios
+            <Github size={14} className="mr-2 group-hover:rotate-12 transition-transform" /> GitHub Source
           </Button>
         </motion.div>
       </motion.div>
