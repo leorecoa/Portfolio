@@ -8,32 +8,28 @@ import { useMousePosition } from '../../hooks/useMousePosition';
 const Hero: React.FC = () => {
   const { mouseX, mouseY } = useMousePosition();
 
-  const contentX = useTransform(mouseX, [-0.5, 0.5], [-45, 45]);
-  const contentY = useTransform(mouseY, [-0.5, 0.5], [-45, 45]);
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [14, -14]); 
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-14, 14]);
-  const shadowX = useTransform(mouseX, [-0.5, 0.5], [25, -25]);
-  const shadowY = useTransform(mouseY, [-0.5, 0.5], [25, -25]);
+  const contentX = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+  const contentY = useTransform(mouseY, [-0.5, 0.5], [-20, 20]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10]); 
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10]);
 
   const githubUrl = "https://github.com/leorecoa";
 
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20"
-      style={{ perspective: '1400px' }}
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-6 pt-24 md:pt-20"
+      style={{ perspective: '1200px' }}
     >
       <div className="absolute inset-0 z-0">
         <motion.div 
           animate={{ 
-            scale: [1, 1.12, 1],
-            opacity: [0.06, 0.09, 0.06],
-            x: ['-50%', '-48.5%', '-50%'],
+            scale: [1, 1.1, 1],
+            opacity: [0.05, 0.08, 0.05],
           }}
-          transition={{ duration: 28, repeat: Infinity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110vw] h-[110vw] bg-cyan-500/10 blur-[180px] rounded-full"
+          transition={{ duration: 20, repeat: Infinity }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vw] md:w-[110vw] md:h-[110vw] bg-cyan-500/10 blur-[120px] md:blur-[180px] rounded-full"
         />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay"></div>
       </div>
 
       <motion.div 
@@ -43,17 +39,15 @@ const Hero: React.FC = () => {
           rotateX, 
           rotateY, 
           transformStyle: 'preserve-3d',
-          filter: `drop-shadow(${shadowX}px ${shadowY}px 45px rgba(0,0,0,0.45))`
         }}
         className="relative z-10 max-w-6xl w-full text-center"
       >
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-6 md:mb-8"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-cyan-400 backdrop-blur-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
@@ -63,11 +57,11 @@ const Hero: React.FC = () => {
         </motion.div>
 
         <motion.h1 
-          initial={{ opacity: 0, scale: 0.97 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[13vw] md:text-[8vw] font-black leading-[0.8] tracking-tighter mb-10 text-white drop-shadow-xl"
-          style={{ transform: 'translateZ(80px)' }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[15vw] sm:text-[12vw] md:text-[8vw] font-black leading-[0.85] md:leading-[0.8] tracking-tighter mb-8 md:mb-10 text-white"
+          style={{ transform: 'translateZ(60px)' }}
         >
           LEANDRO <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
@@ -78,9 +72,9 @@ const Hero: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-white/40 text-lg md:text-xl max-w-3xl mx-auto mb-16 font-light leading-relaxed px-4"
-          style={{ transform: 'translateZ(50px)' }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-white/40 text-base md:text-xl max-w-2xl mx-auto mb-12 md:mb-16 font-light leading-relaxed px-4"
+          style={{ transform: 'translateZ(40px)' }}
         >
           Orquestrando inteligência artificial para criar interfaces que parecem ter vindo de um futuro próximo.
         </motion.p>
@@ -88,19 +82,16 @@ const Hero: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="relative inline-flex flex-col sm:flex-row items-center justify-center gap-8 p-4 rounded-[3rem]"
-          style={{ transform: 'translateZ(70px)' }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4"
+          style={{ transform: 'translateZ(50px)' }}
         >
-          <Button variant="primary" href="#projects">
-            Projetos <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+          <Button variant="primary" href="#projects" className="w-full sm:w-auto">
+            Projetos <ArrowRight size={14} strokeWidth={3} className="ml-1" />
           </Button>
-          <Button variant="secondary" href={githubUrl} target="_blank">
-            <Github size={14} className="group-hover:rotate-12 transition-transform" /> Repositórios
+          <Button variant="secondary" href={githubUrl} target="_blank" className="w-full sm:w-auto">
+            <Github size={14} className="mr-1" /> Repositórios
           </Button>
-          
-          <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-400/30"></div>
-          <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-400/30"></div>
         </motion.div>
       </motion.div>
     </section>

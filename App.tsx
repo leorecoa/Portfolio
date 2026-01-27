@@ -18,7 +18,6 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground interactionRadius={radius} />
-      
       <Navbar />
       
       <main>
@@ -30,23 +29,23 @@ const App: React.FC = () => {
         <Contact />
       </main>
 
-      <div className="fixed bottom-10 right-10 z-[110] flex flex-col items-end gap-4">
+      <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[110] flex flex-col items-end gap-4">
         <AnimatePresence>
           {showSettings && (
             <motion.div
               initial={{ opacity: 0, x: 20, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 20, scale: 0.95 }}
-              className="glass-card p-6 rounded-3xl mb-2 w-64 border border-cyan-400/20 backdrop-blur-xl"
+              className="glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl mb-2 w-56 md:w-64 border border-cyan-400/20 backdrop-blur-xl"
             >
               <div className="flex items-center gap-2 mb-4 text-cyan-400">
-                <MousePointer2 size={16} />
-                <span className="text-xs font-bold uppercase tracking-widest font-space">Particle Interaction</span>
+                <MousePointer2 size={14} />
+                <span className="text-[10px] font-bold uppercase tracking-widest font-space">Particle Field</span>
               </div>
               
               <div className="space-y-4">
-                <div className="flex justify-between text-[10px] text-white/40 uppercase font-bold tracking-tighter">
-                  <span>Radius</span>
+                <div className="flex justify-between text-[9px] text-white/40 uppercase font-bold tracking-tighter">
+                  <span>Interaction Area</span>
                   <span className="text-cyan-400">{radius}px</span>
                 </div>
                 <input 
@@ -65,13 +64,14 @@ const App: React.FC = () => {
 
         <button 
           onClick={() => setShowSettings(!showSettings)}
-          className={`p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
+          className={`p-3.5 md:p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5)]' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
+          aria-label="Settings"
         >
-          <Settings2 size={24} className={showSettings ? 'animate-spin-slow' : ''} />
+          <Settings2 size={20} className={showSettings ? 'animate-spin-slow md:w-6 md:h-6' : 'md:w-6 md:h-6'} />
         </button>
       </div>
 
-      <div className="fixed bottom-10 left-10 z-50 hidden lg:block">
+      <div className="fixed bottom-10 left-10 z-50 hidden xl:block">
         <div className="flex flex-col gap-4">
           <div className="h-32 w-px bg-gradient-to-t from-cyan-400 to-transparent"></div>
           <span className="rotate-90 origin-left text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400/50">

@@ -19,7 +19,9 @@ export interface ProcessStep {
   tags: string[];
 }
 
+// Fixed: Added color property to resolve type errors in lib/constants.tsx and TechStack components
 export interface TechItem {
   name: string;
   icon: string;
+  color: string;
 }

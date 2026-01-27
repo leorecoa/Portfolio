@@ -60,13 +60,13 @@ export const PROCESS_STEPS: ProcessStep[] = [
 ];
 
 export const TECH_STACK: TechItem[] = [
-  { name: "React", icon: "Code2" },
-  { name: "TypeScript", icon: "Code2" },
-  { name: "Tailwind CSS", icon: "Code2" },
-  { name: "Next.js", icon: "Rocket" },
-  { name: "Node.js", icon: "Code2" },
-  { name: "Framer Motion", icon: "Sparkles" },
-  { name: "Gemini API", icon: "BrainCircuit" },
-  { name: "Git", icon: "Github" },
-  { name: "Figma", icon: "Figma" }
+  { name: "React", icon: "Code2", color: "#61DAFB" },
+  { name: "TypeScript", icon: "Code2", color: "#3178C6" },
+  { name: "Tailwind CSS", icon: "Code2", color: "#38B2AC" },
+  { name: "Next.js", icon: "Rocket", color: "#FFFFFF" },
+  { name: "Node.js", icon: "Code2", color: "#339933" },
+  { name: "Framer Motion", icon: "Sparkles", color: "#FF0066" },
+  { name: "Gemini API", icon: "BrainCircuit", color: "#8E75FF" },
+  { name: "Git", icon: "Github", color: "#F05032" },
+  { name: "Figma", icon: "Figma", color: "#A259FF" }
 ];

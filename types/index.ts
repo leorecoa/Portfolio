@@ -21,4 +21,5 @@ export interface ProcessStep {
 export interface TechItem {
   name: string;
   icon: string;
+  color: string;
 }
