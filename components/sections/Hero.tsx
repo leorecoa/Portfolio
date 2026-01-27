@@ -21,14 +21,14 @@ const Hero: React.FC = () => {
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-6 pt-24 md:pt-20"
       style={{ perspective: '1200px' }}
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div 
           animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.05, 0.08, 0.05],
+            scale: [1, 1.05, 1],
+            opacity: [0.05, 0.07, 0.05],
           }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vw] md:w-[110vw] md:h-[110vw] bg-cyan-500/10 blur-[120px] md:blur-[180px] rounded-full"
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vw] md:w-[110vw] md:h-[110vw] bg-cyan-500/10 blur-[120px] rounded-full will-change-transform"
         />
       </div>
 
@@ -39,6 +39,7 @@ const Hero: React.FC = () => {
           rotateX, 
           rotateY, 
           transformStyle: 'preserve-3d',
+          willChange: 'transform'
         }}
         className="relative z-10 max-w-6xl w-full text-center"
       >
@@ -59,7 +60,7 @@ const Hero: React.FC = () => {
         <motion.h1 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-[15vw] sm:text-[12vw] md:text-[8vw] font-black leading-[0.85] md:leading-[0.8] tracking-tighter mb-8 md:mb-10 text-white"
           style={{ transform: 'translateZ(60px)' }}
         >
@@ -72,7 +73,7 @@ const Hero: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="text-white/40 text-base md:text-xl max-w-2xl mx-auto mb-12 md:mb-16 font-light leading-relaxed px-4"
           style={{ transform: 'translateZ(40px)' }}
         >
@@ -82,7 +83,7 @@ const Hero: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4"
           style={{ transform: 'translateZ(50px)' }}
         >
