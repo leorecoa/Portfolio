@@ -24,20 +24,20 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Alpha: false para performance se o fundo for opaco
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     let animationFrameId: number;
     let particles: Particle[] = [];
     
-    // Otimização: Constantes pré-calculadas
+    // Constantes de Movimento Otimizadas (Calmas e Fluídas)
     const CONNECTION_DISTANCE = 110;
     const CONNECTION_DISTANCE_SQ = CONNECTION_DISTANCE * CONNECTION_DISTANCE;
-    const FRICTION = 0.98; 
-    const DRIFT_SPEED = 0.8;
-    const MOUSE_REPEL_FORCE = 1.8;
-    const MAX_PARTICLES = window.innerWidth < 768 ? 60 : 120; // Reduzido para performance
+    const FRICTION = 0.99; // Menos fricção para manter o movimento por mais tempo
+    const DRIFT_SPEED = 0.25; // Velocidade bem reduzida para não "poluir" visualmente
+    const MOUSE_REPEL_FORCE = 1.2;
+    const CONSTANT_ACCEL = 0.005; // Pequeno impulso constante para nunca parar
+    const MAX_PARTICLES = window.innerWidth < 768 ? 50 : 100;
 
     class Particle {
       x: number;
@@ -54,37 +54,36 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
       constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.baseSize = Math.random() * 2 + 1; 
+        this.baseSize = Math.random() * 1.5 + 1; 
         this.size = this.baseSize;
+        // Velocidade inicial bem baixa
         this.vx = (Math.random() - 0.5) * DRIFT_SPEED;
         this.vy = (Math.random() - 0.5) * DRIFT_SPEED;
-        this.opacity = Math.random() * 0.3 + 0.1;
+        this.opacity = Math.random() * 0.25 + 0.1;
         this.angle = Math.random() * Math.PI * 2;
-        this.spin = (Math.random() - 0.5) * 0.02;
+        this.spin = (Math.random() - 0.5) * 0.01; // Rotação mais lenta
         this.excited = 0;
       }
 
       draw() {
         if (!ctx) return;
         
-        const currentOpacity = this.opacity + (this.excited * 0.4);
-        const currentSize = this.size * (1 + this.excited);
+        const currentOpacity = this.opacity + (this.excited * 0.3);
+        const currentSize = this.size * (1 + this.excited * 0.5);
         
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
         
-        // Desenho simplificado para performance
         ctx.beginPath();
-        ctx.moveTo(0, -currentSize * 1.5);
+        ctx.moveTo(0, -currentSize * 1.2);
         ctx.lineTo(currentSize, 0);
-        ctx.lineTo(0, currentSize * 1.5);
+        ctx.lineTo(0, currentSize * 1.2);
         ctx.lineTo(-currentSize, 0);
         ctx.closePath();
 
-        // Sombras neon são pesadas, ativamos apenas se estiver animado
-        if (this.excited > 0.2) {
-          ctx.shadowBlur = 10 * this.excited;
+        if (this.excited > 0.3) {
+          ctx.shadowBlur = 8 * this.excited;
           ctx.shadowColor = '#22d3ee';
         }
 
@@ -100,9 +99,10 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
         const distSq = dx * dx + dy * dy;
         const maxDistSq = radiusRef.current * radiusRef.current;
 
+        // Interação com o Mouse
         if (distSq < maxDistSq && mouse.active) {
-          this.excited = Math.min(this.excited + 0.05, 1);
-          const distance = Math.sqrt(distSq); // Necessário apenas para o vetor unitário
+          this.excited = Math.min(this.excited + 0.03, 1);
+          const distance = Math.sqrt(distSq);
           const force = (radiusRef.current - distance) / radiusRef.current;
           
           this.vx -= (dx / distance) * force * MOUSE_REPEL_FORCE;
@@ -111,23 +111,29 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
           this.excited = Math.max(this.excited - 0.01, 0);
         }
 
+        // Micro-impulsos aleatórios para manter a vida (Brownian motion leve)
+        this.vx += (Math.random() - 0.5) * CONSTANT_ACCEL;
+        this.vy += (Math.random() - 0.5) * CONSTANT_ACCEL;
+
+        // Aplicar Física
         this.vx *= FRICTION;
         this.vy *= FRICTION;
+        
         this.x += this.vx;
         this.y += this.vy;
-        this.angle += this.spin * (1 + this.excited * 2);
+        this.angle += this.spin * (1 + this.excited);
 
-        // Wrapping leve
-        if (this.x < -50) this.x = width + 50;
-        if (this.x > width + 50) this.x = -50;
-        if (this.y < -50) this.y = height + 50;
-        if (this.y > height + 50) this.y = -50;
+        // Wrapping suave
+        const margin = 50;
+        if (this.x < -margin) this.x = width + margin;
+        if (this.x > width + margin) this.x = -margin;
+        if (this.y < -margin) this.y = height + margin;
+        if (this.y > height + margin) this.y = -margin;
       }
     }
 
     const drawConnections = () => {
       ctx.lineWidth = 0.5;
-      // Loop O(n²/2) otimizado com squared distance
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -137,7 +143,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
           const distSq = dx * dx + dy * dy;
 
           if (distSq < CONNECTION_DISTANCE_SQ) {
-            const opacity = (1 - distSq / CONNECTION_DISTANCE_SQ) * 0.15;
+            const opacity = (1 - distSq / CONNECTION_DISTANCE_SQ) * 0.12;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
             ctx.moveTo(p1.x, p1.y);
@@ -150,7 +156,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
 
     const init = () => {
       const { innerWidth: width, innerHeight: height } = window;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap no DPR para performance
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5); // Reduzido DPR para estabilidade máxima
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
@@ -162,9 +168,9 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
     };
 
     const animate = () => {
-      const { width, height } = canvas.getBoundingClientRect();
+      const { innerWidth: width, innerHeight: height } = window;
       
-      // Limpeza rápida do canvas
+      // Limpeza sólida para performance
       ctx.fillStyle = '#030303';
       ctx.fillRect(0, 0, width, height);
 
@@ -184,9 +190,13 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
       mouseRef.current.y = e.clientY;
       mouseRef.current.active = true;
     };
+    const handleMouseLeave = () => {
+      mouseRef.current.active = false;
+    };
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
     
     init();
     animate();
@@ -194,6 +204,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
