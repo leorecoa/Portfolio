@@ -1,5 +1,12 @@
 {
-  "name": "Leandro Jesse | AI-Assisted Developer",
-  "description": "A high-end, interactive personal portfolio for Leandro Jesse, featuring motion design, neon accents, and mouse-reactive experiences.",
-  "requestFramePermissions": []
+  "name": "Leandro Jesse | AI Architect",
+  "description": "Portfólio de alta performance focado em Design de Interface e Desenvolvimento assistido por Inteligência Artificial.",
+  "requestFramePermissions": [],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23030303'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='50' fill='%2322d3ee' style='filter: drop-shadow(0 0 5px %2322d3ee);'>LJ</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
 }
