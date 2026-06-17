@@ -1,0 +1,26 @@
+{
+  "name": "Leorecoa Dev Portfolio",
+  "short_name": "Leorecoa",
+  "description": "Portfólio profissional de Leandro Jessé, com projetos, stack técnica e links profissionais.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "pt-BR",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "categories": ["portfolio", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/icons/maskable-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}
