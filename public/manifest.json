@@ -1,7 +1,8 @@
 {
   "name": "Leorecoa Dev Portfolio",
   "short_name": "Leorecoa",
-  "description": "Portfólio profissional de Leandro Jessé, com projetos, stack técnica e links profissionais.",
+  "description": "Portfolio profissional de Leandro Jesse, com projetos reais, stack tecnica e links profissionais.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
