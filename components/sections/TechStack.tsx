@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TECH_STACK } from '../../lib/constants';
@@ -14,7 +13,7 @@ const TechStack: React.FC = () => {
   const marqueeY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="py-24 md:py-40 border-y border-white/5 overflow-hidden bg-zinc-950/20 relative"
     >
@@ -26,33 +25,38 @@ const TechStack: React.FC = () => {
         >
           <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
             <div className="w-8 md:w-12 h-px bg-cyan-400"></div>
-            <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Environment</h2>
+            <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Stack Tecnica</h2>
           </div>
           <h3 className="text-4xl md:text-7xl font-bold font-space">
-            Minha <span className="text-white/40 italic">Tech</span> Suite
+            Ferramentas de <span className="text-white/40 italic">produto</span>
           </h3>
         </motion.div>
       </div>
-      
+
       <motion.div style={{ y: marqueeY }} className="marquee relative z-10">
-        {/* Doubled the set and added more items to constants to make loop invisible */}
         <div className="marquee-content py-6 md:py-12" style={{ animationDuration: '60s' }}>
           {[...TECH_STACK, ...TECH_STACK].map((item, index) => {
-             const IconComponent = (LucideIcons as any)[item.icon] || LucideIcons.Code2;
-             return (
+            const IconComponent = (LucideIcons[item.icon as keyof typeof LucideIcons] as React.ComponentType<{ size?: number; className?: string }>) || LucideIcons.Code2;
+            const category = item.name === 'Supabase' || item.name === 'PostgreSQL'
+              ? 'DATA'
+              : item.name === 'FastAPI' || item.name === 'Docker'
+                ? 'BACKEND'
+                : 'CORE DEV';
+
+            return (
               <div key={index} className="px-4 md:px-10 group cursor-default">
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -8, scale: 1.05 }}
-                  style={{ 
+                  style={{
                     '--neon-color': item.color,
                   } as React.CSSProperties}
                   className="flex items-center gap-4 md:gap-8 p-6 md:p-10 glass-card rounded-2xl md:rounded-[3rem] border border-white/5 min-w-[240px] md:min-w-[360px] backdrop-blur-md transition-all duration-700 hover:border-[var(--neon-color)] hover:shadow-[0_0_40px_rgba(var(--neon-color-rgb),0.1)] group"
                 >
-                  <div 
+                  <div
                     className="transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-6"
-                    style={{ 
+                    style={{
                       color: item.color,
-                      filter: `drop-shadow(0 0 10px ${item.color}44)` 
+                      filter: `drop-shadow(0 0 10px ${item.color}44)`
                     }}
                   >
                     <IconComponent size={32} className="md:w-10 md:h-10" />
@@ -61,15 +65,14 @@ const TechStack: React.FC = () => {
                     <span className="text-2xl md:text-4xl font-space font-bold text-white/60 group-hover:text-white transition-colors tracking-tighter">
                       {item.name}
                     </span>
-                    <span 
+                    <span
                       className="text-[8px] md:text-[11px] font-mono uppercase tracking-widest mt-1 opacity-20 group-hover:opacity-100 transition-opacity font-bold"
                       style={{ color: item.color }}
                     >
-                      {item.name === 'Figma' ? 'INTERFACE' : item.name.includes('AI') ? 'INTELLIGENCE' : 'CORE DEV'}
+                      {category}
                     </span>
                   </div>
 
-                  {/* Handles Estilo Figma Coloridos - Refined */}
                   <div className="absolute top-3 left-3 w-1.5 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: item.color, boxShadow: `0 0 8px ${item.color}` }}></div>
                   <div className="absolute top-3 right-3 w-1.5 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: item.color, boxShadow: `0 0 8px ${item.color}` }}></div>
                   <div className="absolute bottom-3 left-3 w-1.5 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: item.color, boxShadow: `0 0 8px ${item.color}` }}></div>
@@ -81,7 +84,6 @@ const TechStack: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Background Ambience */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"></div>
     </section>
   );
