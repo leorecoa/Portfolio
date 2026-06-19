@@ -1,7 +1,18 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TECH_STACK } from '../../lib/constants';
-import * as LucideIcons from 'lucide-react';
+import { Code2, Container, Database, Github, Rocket, Server, Sparkles, Zap, type LucideIcon } from 'lucide-react';
+
+const ICONS: Record<string, LucideIcon> = {
+  Code2,
+  Container,
+  Database,
+  Github,
+  Rocket,
+  Server,
+  Sparkles,
+  Zap,
+};
 
 const TechStack: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -36,7 +47,7 @@ const TechStack: React.FC = () => {
       <motion.div style={{ y: marqueeY }} className="marquee relative z-10">
         <div className="marquee-content py-6 md:py-12" style={{ animationDuration: '60s' }}>
           {[...TECH_STACK, ...TECH_STACK].map((item, index) => {
-            const IconComponent = (LucideIcons[item.icon as keyof typeof LucideIcons] as React.ComponentType<{ size?: number; className?: string }>) || LucideIcons.Code2;
+            const IconComponent = ICONS[item.icon] || Code2;
             const category = item.name === 'Supabase' || item.name === 'PostgreSQL'
               ? 'DATA'
               : item.name === 'FastAPI' || item.name === 'Docker'
