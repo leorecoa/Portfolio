@@ -88,7 +88,7 @@ const App: React.FC = () => {
               <div className="flex flex-col gap-4">
                 <div className="h-32 w-px bg-gradient-to-t from-cyan-400 to-transparent"></div>
                 <span className="rotate-90 origin-left text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400/50">
-                  Developer / Designer
+                  Full Stack Developer
                 </span>
               </div>
             </div>

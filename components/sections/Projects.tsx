@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
 import GlassCard from '../ui/GlassCard';
 import SectionTitle from '../ui/SectionTitle';
@@ -13,10 +12,10 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 md:py-24 px-4 relative bg-[#030303]">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle 
-          label="Selected Works" 
-          title={<>Code <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 italic">Case Studies</span></>} 
-          subtitle="Uma seleção de sistemas desenvolvidos com foco em performance, escalabilidade e integração inteligente."
+        <SectionTitle
+          label="Selected Works"
+          title={<>Projetos <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 italic">reais</span></>}
+          subtitle="Sistemas desenvolvidos com foco em arquitetura clara, regras de negocio, controle de acesso e experiencia de uso."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -38,9 +37,9 @@ const Projects: React.FC = () => {
                 >
                   <GlassCard className="aspect-[4/5] p-6 md:p-10 flex flex-col justify-end min-h-[480px] h-full">
                     <div className="absolute inset-0 z-0">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
+                      <img
+                        src={project.image}
+                        alt={`Imagem representando o projeto ${project.title}`}
                         className="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
@@ -71,16 +70,23 @@ const Projects: React.FC = () => {
                               {project.stars}
                             </div>
                           )}
+                          {project.forks !== undefined && project.forks > 0 && (
+                            <div className="flex items-center gap-1.5 text-white/30 text-[9px] font-bold">
+                              <GitFork size={10} className="text-cyan-400" />
+                              {project.forks}
+                            </div>
+                          )}
                           <div className="flex items-center gap-1.5 text-white/30 text-[9px] font-bold">
                             <ArrowUpRight size={10} className="text-cyan-400" />
-                            Case Study
+                            Repositorio
                           </div>
                         </div>
 
-                        <a 
-                          href={project.link} 
-                          target="_blank" 
+                        <a
+                          href={project.link}
+                          target="_blank"
                           rel="noreferrer"
+                          aria-label={`Abrir repositorio ${project.title}`}
                           className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-cyan-500/40"
                         >
                           <ExternalLink size={16} />
