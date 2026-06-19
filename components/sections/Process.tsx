@@ -1,7 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PROCESS_STEPS } from '../../lib/constants';
-import * as LucideIcons from 'lucide-react';
+import { Code2, ListChecks, Network, ShieldCheck, Zap, type LucideIcon } from 'lucide-react';
+
+const ICONS: Record<string, LucideIcon> = {
+  Code2,
+  ListChecks,
+  Network,
+  ShieldCheck,
+};
 
 const Process: React.FC = () => {
   return (
@@ -37,8 +44,7 @@ const Process: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {PROCESS_STEPS.map((step, index) => {
-            const IconName = step.icon as keyof typeof LucideIcons;
-            const IconComponent = (LucideIcons[IconName] as React.ComponentType<{ size?: number; strokeWidth?: number }>) || LucideIcons.Zap;
+            const IconComponent = ICONS[step.icon] || Zap;
             return (
               <motion.div
                 key={index}
