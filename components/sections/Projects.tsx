@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Star, GitFork, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
+import { CASE_STUDIES } from '../../lib/caseStudies';
 import GlassCard from '../ui/GlassCard';
 import SectionTitle from '../ui/SectionTitle';
+
+const caseSlugByRepository = new Map(CASE_STUDIES.map(caseStudy => [caseStudy.repositoryUrl, caseStudy.slug]));
 
 const Projects: React.FC = () => {
   const username = "leorecoa";
@@ -60,9 +63,16 @@ const Projects: React.FC = () => {
                         {project.title}
                       </h3>
 
-                      <p className="text-xs md:text-sm text-white/60 line-clamp-3 mb-8 font-light leading-relaxed group-hover:text-white/70 transition-colors">
+                      <p className="text-xs md:text-sm text-white/60 line-clamp-3 mb-5 font-light leading-relaxed group-hover:text-white/70 transition-colors">
                         {project.description}
                       </p>
+
+                      <a
+                        href={`#case-${caseSlugByRepository.get(project.link)}`}
+                        className="inline-flex items-center gap-2 mb-6 text-[10px] font-bold uppercase tracking-widest text-cyan-400 hover:text-white transition-colors"
+                      >
+                        View case study <ArrowRight aria-hidden="true" size={14} />
+                      </a>
 
                       <div className="flex items-center justify-between pt-5 border-t border-white/10">
                         <div className="flex gap-4">

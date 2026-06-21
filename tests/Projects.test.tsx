@@ -18,5 +18,7 @@ describe('Projects', () => {
         project.link,
       );
     }
+
+    expect(screen.getAllByRole('link', { name: 'View case study' })).toHaveLength(PROJECTS.length);
   });
 });
