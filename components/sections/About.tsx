@@ -64,6 +64,8 @@ const About: React.FC = () => {
                 <img
                   src="https://avatars.githubusercontent.com/u/203870432?v=4"
                   alt="Retrato de Leandro Jesse"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent pointer-events-none z-10"></div>

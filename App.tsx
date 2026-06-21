@@ -1,16 +1,21 @@
 
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Process from './components/sections/Process';
-import Projects from './components/sections/Projects';
-import TechStack from './components/sections/TechStack';
-import Contact from './components/sections/Contact';
 import ParticleBackground from './components/effects/ParticleBackground';
 import SplashScreen from './components/ui/SplashScreen';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings2, MousePointer2 } from 'lucide-react';
+
+const About = lazy(() => import('./components/sections/About'));
+const Process = lazy(() => import('./components/sections/Process'));
+const TechStack = lazy(() => import('./components/sections/TechStack'));
+const Projects = lazy(() => import('./components/sections/Projects'));
+const Contact = lazy(() => import('./components/sections/Contact'));
+
+const SectionFallback = () => (
+  <div className="min-h-[40vh] bg-[#030303]" aria-hidden="true" />
+);
 
 const App: React.FC = () => {
   const [radius, setRadius] = useState(150);
@@ -34,11 +39,13 @@ const App: React.FC = () => {
             
             <main>
               <Hero />
-              <About />
-              <Process />
-              <TechStack />
-              <Projects />
-              <Contact />
+              <Suspense fallback={<SectionFallback />}>
+                <About />
+                <Process />
+                <TechStack />
+                <Projects />
+                <Contact />
+              </Suspense>
             </main>
 
             {/* UI Components fixed on top of everything */}

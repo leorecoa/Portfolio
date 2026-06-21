@@ -83,6 +83,8 @@ The project uses ESLint for static analysis, Vitest and React Testing Library fo
 
 The interface includes accessibility baseline improvements such as visible focus states, keyboard-friendly navigation, ARIA labels and reduced-motion support.
 
+The app uses Vite bundle splitting, lazy-loaded sections and resource hints to improve initial loading performance.
+
 ## Deploy
 
 Publicado na Vercel:
