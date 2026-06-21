@@ -27,8 +27,9 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId: number | undefined;
     let particles: Particle[] = [];
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     // Constantes de Movimento Otimizadas (Calmas e Fluídas)
     const CONNECTION_DISTANCE = 110;
@@ -199,19 +200,24 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ interactionRadi
     window.addEventListener('mouseleave', handleMouseLeave);
     
     init();
-    animate();
+    if (!prefersReducedMotion) {
+      animate();
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId !== undefined) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 
   return (
     <canvas 
       ref={canvasRef} 
+      aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0" 
       style={{ background: '#030303', willChange: 'transform' }}
     />

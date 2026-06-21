@@ -26,10 +26,10 @@ const Navbar: React.FC = () => {
   const githubUrl = "https://github.com/leorecoa";
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'py-4' : 'py-8'}`}>
+    <nav aria-label="Navegacao principal" className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'py-4' : 'py-8'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className={`glass-card rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-black/60 shadow-lg border-white/10 backdrop-blur-md' : 'bg-transparent border-transparent'}`}>
-          <a href="#home" className="text-2xl font-space font-bold tracking-tighter group flex items-center gap-2">
+          <a href="#home" aria-label="Ir para o inicio" className="text-2xl font-space font-bold tracking-tighter group flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-xs group-hover:rotate-12 transition-transform shadow-lg shadow-cyan-500/20">LJ</div>
             <span className="hidden sm:inline">LEANDRO<span className="text-cyan-400">JESSE</span></span>
           </a>
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-xs font-bold text-white/40 hover:text-cyan-400 transition-colors uppercase tracking-[0.2em]"
+                className="text-xs font-bold text-white/60 hover:text-cyan-400 transition-colors uppercase tracking-[0.2em]"
               >
                 {link.name}
               </a>
@@ -54,13 +54,20 @@ const Navbar: React.FC = () => {
               target="_blank"
               className="scale-90"
             >
-              <Github size={12} className="mr-1" /> Github
+              <Github aria-hidden="true" size={12} className="mr-1" /> Github
             </Button>
           </div>
 
           {/* Mobile Toggle */}
-          <button className="md:hidden text-white p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button
+            type="button"
+            className="md:hidden text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isMobileMenuOpen ? <X aria-hidden="true" size={24} /> : <Menu aria-hidden="true" size={24} />}
           </button>
         </div>
       </div>
@@ -69,6 +76,7 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -91,7 +99,7 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 className="w-full"
               >
-                <Github size={16} /> GitHub Profile
+                <Github aria-hidden="true" size={16} /> GitHub Profile
               </Button>
             </div>
           </motion.div>

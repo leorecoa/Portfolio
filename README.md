@@ -81,6 +81,8 @@ npm run build
 
 The project uses ESLint for static analysis, Vitest and React Testing Library for automated tests, and Vite for production builds.
 
+The interface includes accessibility baseline improvements such as visible focus states, keyboard-friendly navigation, ARIA labels and reduced-motion support.
+
 ## Deploy
 
 Publicado na Vercel:

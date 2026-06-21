@@ -46,18 +46,19 @@ const App: React.FC = () => {
               <AnimatePresence>
                 {showSettings && (
                   <motion.div
+                    id="particle-settings"
                     initial={{ opacity: 0, x: 20, scale: 0.95 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     exit={{ opacity: 0, x: 20, scale: 0.95 }}
                     className="glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl mb-2 w-56 md:w-64 border border-cyan-400/20 backdrop-blur-xl"
                   >
                     <div className="flex items-center gap-2 mb-4 text-cyan-400">
-                      <MousePointer2 size={14} />
+                      <MousePointer2 size={14} aria-hidden="true" />
                       <span className="text-[10px] font-bold uppercase tracking-widest font-space">Particle Field</span>
                     </div>
                     
                     <div className="space-y-4">
-                      <div className="flex justify-between text-[9px] text-white/40 uppercase font-bold tracking-tighter">
+                      <div className="flex justify-between text-[9px] text-white/60 uppercase font-bold tracking-tighter">
                         <span>Interaction Area</span>
                         <span className="text-cyan-400">{radius}px</span>
                       </div>
@@ -76,11 +77,14 @@ const App: React.FC = () => {
               </AnimatePresence>
 
               <button 
+                type="button"
                 onClick={() => setShowSettings(!showSettings)}
-                className={`p-3.5 md:p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5)]' : 'text-white/40 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
+                className={`p-3.5 md:p-4 rounded-full glass-card border transition-all duration-300 ${showSettings ? 'bg-cyan-400 text-black border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5)]' : 'text-white/60 border-white/10 hover:border-cyan-400/50 hover:text-white'}`}
                 aria-label="Settings"
+                aria-expanded={showSettings}
+                aria-controls="particle-settings"
               >
-                <Settings2 size={20} className={showSettings ? 'animate-spin-slow md:w-6 md:h-6' : 'md:w-6 md:h-6'} />
+                <Settings2 aria-hidden="true" size={20} className={showSettings ? 'animate-spin-slow md:w-6 md:h-6' : 'md:w-6 md:h-6'} />
               </button>
             </div>
 

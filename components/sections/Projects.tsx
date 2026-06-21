@@ -58,26 +58,26 @@ const Projects: React.FC = () => {
                         {project.title}
                       </h3>
 
-                      <p className="text-xs md:text-sm text-white/40 line-clamp-3 mb-8 font-light leading-relaxed group-hover:text-white/70 transition-colors">
+                      <p className="text-xs md:text-sm text-white/60 line-clamp-3 mb-8 font-light leading-relaxed group-hover:text-white/70 transition-colors">
                         {project.description}
                       </p>
 
                       <div className="flex items-center justify-between pt-5 border-t border-white/10">
                         <div className="flex gap-4">
                           {project.stars !== undefined && project.stars > 0 && (
-                            <div className="flex items-center gap-1.5 text-white/30 text-[9px] font-bold">
-                              <Star size={10} className="text-amber-400" />
+                            <div className="flex items-center gap-1.5 text-white/50 text-[9px] font-bold">
+                              <Star aria-hidden="true" size={10} className="text-amber-400" />
                               {project.stars}
                             </div>
                           )}
                           {project.forks !== undefined && project.forks > 0 && (
-                            <div className="flex items-center gap-1.5 text-white/30 text-[9px] font-bold">
-                              <GitFork size={10} className="text-cyan-400" />
+                            <div className="flex items-center gap-1.5 text-white/50 text-[9px] font-bold">
+                              <GitFork aria-hidden="true" size={10} className="text-cyan-400" />
                               {project.forks}
                             </div>
                           )}
-                          <div className="flex items-center gap-1.5 text-white/30 text-[9px] font-bold">
-                            <ArrowUpRight size={10} className="text-cyan-400" />
+                          <div className="flex items-center gap-1.5 text-white/50 text-[9px] font-bold">
+                            <ArrowUpRight aria-hidden="true" size={10} className="text-cyan-400" />
                             Repositorio
                           </div>
                         </div>
@@ -89,7 +89,7 @@ const Projects: React.FC = () => {
                           aria-label={`Abrir repositorio ${project.title}`}
                           className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-cyan-500/40"
                         >
-                          <ExternalLink size={16} />
+                          <ExternalLink aria-hidden="true" size={16} />
                         </a>
                       </div>
                     </div>

@@ -36,7 +36,7 @@ const Process: React.FC = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-white/40 max-w-sm text-sm font-light leading-relaxed mb-2"
+            className="text-white/60 max-w-sm text-sm font-light leading-relaxed mb-2"
           >
             Meu processo prioriza escopo claro, arquitetura simples, regras de negocio confiaveis e validacao antes do deploy.
           </motion.p>
@@ -66,19 +66,19 @@ const Process: React.FC = () => {
                   <div className="mb-10 relative">
                     <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-20 blur-xl rounded-full scale-150 group-hover:scale-[2] transition-transform duration-700`}></div>
                     <div className="relative z-10 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-white/5 group-hover:border-cyan-400/40 text-white/50 group-hover:text-cyan-400 transition-all duration-500">
-                      <IconComponent size={30} strokeWidth={1.5} />
+                      <IconComponent aria-hidden="true" size={30} strokeWidth={1.5} />
                     </div>
                   </div>
 
                   <h3 className="text-2xl font-bold mb-4 font-space text-white group-hover:translate-x-1 transition-transform">{step.title}</h3>
 
-                  <p className="text-white/40 leading-relaxed text-sm mb-8 font-light flex-grow">
+                  <p className="text-white/60 leading-relaxed text-sm mb-8 font-light flex-grow">
                     {step.description}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-white/5">
                     {step.tags.map(tag => (
-                      <span key={tag} className="px-2 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[8px] font-mono uppercase tracking-widest text-white/30 group-hover:text-cyan-400/60 group-hover:border-cyan-400/10 transition-colors">
+                      <span key={tag} className="px-2 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[8px] font-mono uppercase tracking-widest text-white/50 group-hover:text-cyan-400/60 group-hover:border-cyan-400/10 transition-colors">
                         {tag}
                       </span>
                     ))}

@@ -10,6 +10,7 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-32 px-4 relative overflow-hidden">
       <motion.div
+        aria-hidden="true"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.03, 0.07, 0.03],
@@ -21,6 +22,7 @@ const Contact: React.FC = () => {
       />
 
       <motion.div
+        aria-hidden="true"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.02, 0.05, 0.02],
@@ -42,13 +44,13 @@ const Contact: React.FC = () => {
             Vamos construir uma <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">aplicacao clara?</span>
           </h2>
-          <p className="text-xl text-white/50 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
             Aberto para conversar sobre produtos web, APIs, interfaces responsivas, Supabase, FastAPI e projetos com regras de negocio bem definidas.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10 mb-16">
             <Button variant="primary" href="mailto:leorecoa2@gmail.com">
-              Enviar e-mail <Send size={18} />
+              Enviar e-mail <Send aria-hidden="true" size={18} />
             </Button>
             <Button variant="secondary" href={githubUrl} target="_blank">
               GitHub Profile
@@ -60,25 +62,25 @@ const Contact: React.FC = () => {
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
+              className="p-4 glass-card rounded-full text-white/60 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
               aria-label="GitHub"
             >
-              <Github size={24} />
+              <Github aria-hidden="true" size={24} />
             </a>
             <a
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 glass-card rounded-full text-white/40 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
+              className="p-4 glass-card rounded-full text-white/60 hover:text-cyan-400 hover:border-cyan-400/50 transition-all hover:scale-110 active:scale-95"
               aria-label="LinkedIn"
             >
-              <Linkedin size={24} />
+              <Linkedin aria-hidden="true" size={24} />
             </a>
           </div>
         </motion.div>
       </div>
 
-      <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 opacity-40 text-sm">
+      <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 opacity-60 text-sm">
         <p>(c) 2026 Leandro Jesse. Criado com React, TypeScript e Tailwind CSS.</p>
         <div className="flex gap-8">
           <a href="#home" className="hover:text-white transition-colors">Back to top</a>
