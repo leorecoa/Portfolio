@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-vert-alpha-h2mwblh056.vercel.app/sitemap.xml
