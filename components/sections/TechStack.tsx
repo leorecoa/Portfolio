@@ -36,11 +36,11 @@ const TechStack: React.FC = () => {
         >
           <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
             <div className="w-8 md:w-12 h-px bg-cyan-400"></div>
-            <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Stack Tecnica</h2>
+            <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Stack Tecnica</p>
           </div>
-          <h3 className="text-4xl md:text-7xl font-bold font-space">
+          <h2 className="text-4xl md:text-7xl font-bold font-space">
             Ferramentas de <span className="text-white/40 italic">produto</span>
-          </h3>
+          </h2>
         </motion.div>
       </div>
 
@@ -70,7 +70,7 @@ const TechStack: React.FC = () => {
                       filter: `drop-shadow(0 0 10px ${item.color}44)`
                     }}
                   >
-                    <IconComponent size={32} className="md:w-10 md:h-10" />
+                    <IconComponent aria-hidden="true" size={32} className="md:w-10 md:h-10" />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-2xl md:text-4xl font-space font-bold text-white/60 group-hover:text-white transition-colors tracking-tighter">

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const About: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 px-4 overflow-hidden relative bg-zinc-950/40">
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-black text-white/[0.01] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter">
+      <div aria-hidden="true" className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-black text-white/[0.01] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter">
         FULL STACK DEVELOPER - REACT - TYPESCRIPT - FASTAPI
       </div>
 
@@ -17,14 +17,14 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-400 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
               Perfil Tecnico
             </div>
             <h2 className="text-4xl md:text-7xl font-bold mb-8 md:mb-10 leading-[1] md:leading-[0.9] tracking-tighter">
               Produtos web com <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">arquitetura clara</span>
             </h2>
-            <div className="space-y-6 md:space-y-8 text-base md:text-lg text-white/50 leading-relaxed font-light">
+            <div className="space-y-6 md:space-y-8 text-base md:text-lg text-white/60 leading-relaxed font-light">
               <p className="border-l-2 border-cyan-400/30 pl-4 md:pl-6 italic text-white/70">
                 "Full Stack Developer focused on React, TypeScript, FastAPI, Supabase and product-driven web applications."
               </p>
@@ -39,15 +39,15 @@ const About: React.FC = () => {
             <div className="mt-10 md:mt-12 flex flex-wrap gap-8 md:gap-12">
               <div>
                 <p className="text-2xl md:text-3xl font-bold font-space text-white">React</p>
-                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/30 font-bold">Frontend</p>
+                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-bold">Frontend</p>
               </div>
               <div>
                 <p className="text-2xl md:text-3xl font-bold font-space text-white">FastAPI</p>
-                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/30 font-bold">Backend</p>
+                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-bold">Backend</p>
               </div>
               <div>
                 <p className="text-2xl md:text-3xl font-bold font-space text-white">Supabase</p>
-                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/30 font-bold">Data Access</p>
+                <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-bold">Data Access</p>
               </div>
             </div>
           </motion.div>

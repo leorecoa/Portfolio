@@ -7,4 +7,20 @@
   body {
     @apply bg-[#030303] text-white;
   }
+
+  :focus-visible {
+    outline: 2px solid rgb(34 211 238);
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
