@@ -74,11 +74,12 @@ npm run build
 ## Quality checks
 
 ```bash
+npm run lint
 npm run test:run
 npm run build
 ```
 
-The project uses Vitest and React Testing Library for the first automated test layer.
+The project uses ESLint for static analysis, Vitest and React Testing Library for automated tests, and Vite for production builds.
 
 ## Deploy
 

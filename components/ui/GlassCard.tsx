@@ -19,7 +19,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
 }) => {
   return (
     <motion.div 
-      {...(props as any)}
+      {...props}
       className={`relative glass-card rounded-[2.5rem] border border-white/5 transition-all duration-700 overflow-hidden ${hoverEffect ? 'hover:border-cyan-400/30' : ''} ${className}`}
     >
       {children}

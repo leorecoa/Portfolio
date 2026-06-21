@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TECH_STACK } from '../constants';
 import * as LucideIcons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 const TechStack: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -85,7 +86,8 @@ const TechStack: React.FC = () => {
       >
         <div className="marquee-content py-12">
           {[...TECH_STACK, ...TECH_STACK].map((item, index) => {
-             const IconComponent = (LucideIcons as any)[item.icon] || LucideIcons.Code2;
+             const IconComponent = LucideIcons[item.icon as keyof typeof LucideIcons] as LucideIcon | undefined;
+             const StackIcon = IconComponent || LucideIcons.Code2;
              return (
               <motion.div 
                 key={index} 
@@ -115,7 +117,7 @@ const TechStack: React.FC = () => {
                   </div>
                   
                   <div className="text-white/30 group-hover:text-cyan-400 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12 z-10">
-                    <IconComponent size={36} strokeWidth={1.5} />
+                    <StackIcon size={36} strokeWidth={1.5} />
                   </div>
                   
                   <div className="flex flex-col z-10">
