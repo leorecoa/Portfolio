@@ -40,6 +40,8 @@ const Projects: React.FC = () => {
                       <img
                         src={project.image}
                         alt={`Imagem representando o projeto ${project.title}`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
