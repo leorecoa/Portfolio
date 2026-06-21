@@ -85,6 +85,8 @@ The interface includes accessibility baseline improvements such as visible focus
 
 The app uses Vite bundle splitting, lazy-loaded sections and resource hints to improve initial loading performance.
 
+The project includes SEO metadata, Open Graph/Twitter Card tags, structured data, robots.txt and sitemap.xml.
+
 ## Deploy
 
 Publicado na Vercel:
