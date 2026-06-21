@@ -1,6 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+
+const STATUS_MESSAGES = [
+  'CALIBRATING_NEURAL_NETS...',
+  'SYNCING_DESIGN_UNITS...',
+  'INJECTING_NEON_ASSETS...',
+  'ORCHESTRATING_AI_FLOW...',
+  'SYSTEM_READY'
+];
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -10,14 +18,6 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState('INITIALIZING_CORE');
   
-  const statusMessages = [
-    'CALIBRATING_NEURAL_NETS...',
-    'SYNCING_DESIGN_UNITS...',
-    'INJECTING_NEON_ASSETS...',
-    'ORCHESTRATING_AI_FLOW...',
-    'SYSTEM_READY'
-  ];
-
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress(prev => {
@@ -29,9 +29,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         const next = prev + Math.random() * 15;
         
         // Update status messages based on progress
-        const messageIndex = Math.floor((next / 100) * statusMessages.length);
-        if (statusMessages[messageIndex]) {
-          setStatus(statusMessages[messageIndex]);
+        const messageIndex = Math.floor((next / 100) * STATUS_MESSAGES.length);
+        if (STATUS_MESSAGES[messageIndex]) {
+          setStatus(STATUS_MESSAGES[messageIndex]);
         }
         
         return next > 100 ? 100 : next;

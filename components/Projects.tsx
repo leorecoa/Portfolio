@@ -2,8 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
-import { ExternalLink, Github, Star, GitFork, Loader2 } from 'lucide-react';
+import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
 import { Project } from '../types';
+
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  fork: boolean;
+  topics: string[];
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+}
 
 const Projects: React.FC = () => {
   const [repos, setRepos] = useState<Project[]>([]);
@@ -15,11 +26,11 @@ const Projects: React.FC = () => {
       try {
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
         if (!response.ok) throw new Error('Failed to fetch');
-        const data = await response.json();
+        const data = await response.json() as GithubRepo[];
         
         const mappedRepos: Project[] = data
-          .filter((repo: any) => !repo.fork) // Apenas projetos originais
-          .map((repo: any) => ({
+          .filter(repo => !repo.fork) // Apenas projetos originais
+          .map(repo => ({
             id: repo.id,
             title: repo.name.replace(/-/g, ' ').replace(/_/g, ' '),
             description: repo.description || "Projeto desenvolvido com foco em inovação e performance técnica.",
@@ -140,16 +151,16 @@ const Projects: React.FC = () => {
 
                     <div className="flex items-center justify-between pt-6 border-t border-white/10">
                       <div className="flex gap-6">
-                        {(project as any).stars !== undefined && (
+                        {project.stars !== undefined && (
                           <div className="flex items-center gap-1.5 text-white/30 text-[10px] font-bold">
                             <Star size={12} className="text-amber-400" />
-                            {(project as any).stars}
+                            {project.stars}
                           </div>
                         )}
-                        {(project as any).forks !== undefined && (
+                        {project.forks !== undefined && (
                           <div className="flex items-center gap-1.5 text-white/30 text-[10px] font-bold">
                             <GitFork size={12} className="text-cyan-400" />
-                            {(project as any).forks}
+                            {project.forks}
                           </div>
                         )}
                       </div>
