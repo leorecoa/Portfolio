@@ -11,6 +11,7 @@ const About = lazy(() => import('./components/sections/About'));
 const Process = lazy(() => import('./components/sections/Process'));
 const TechStack = lazy(() => import('./components/sections/TechStack'));
 const Projects = lazy(() => import('./components/sections/Projects'));
+const CaseStudies = lazy(() => import('./components/sections/CaseStudies'));
 const Contact = lazy(() => import('./components/sections/Contact'));
 
 const SectionFallback = () => (
@@ -44,6 +45,7 @@ const App: React.FC = () => {
                 <Process />
                 <TechStack />
                 <Projects />
+                <CaseStudies />
                 <Contact />
               </Suspense>
             </main>

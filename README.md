@@ -87,6 +87,8 @@ The app uses Vite bundle splitting, lazy-loaded sections and resource hints to i
 
 The project includes SEO metadata, Open Graph/Twitter Card tags, structured data, robots.txt and sitemap.xml.
 
+The portfolio includes project case studies covering problem context, technical decisions, stack and implementation outcomes.
+
 ## Deploy
 
 Publicado na Vercel:

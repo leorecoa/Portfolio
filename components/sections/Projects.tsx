@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Star, GitFork, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
+import { CASE_STUDIES } from '../../lib/caseStudies';
 import GlassCard from '../ui/GlassCard';
 import SectionTitle from '../ui/SectionTitle';
+
+const caseSlugByRepository = new Map(CASE_STUDIES.map(caseStudy => [caseStudy.repositoryUrl, caseStudy.slug]));
 
 const Projects: React.FC = () => {
   const username = "leorecoa";
@@ -25,7 +28,10 @@ const Projects: React.FC = () => {
                 <div key={i} className="aspect-[4/5] rounded-[2rem] bg-white/[0.02] border border-white/5 animate-pulse" />
               ))
             ) : (
-              repos.map((project, index) => (
+              repos.map((project, index) => {
+                const caseStudySlug = caseSlugByRepository.get(project.link);
+
+                return (
                 <motion.div
                   key={project.id}
                   layout
@@ -60,9 +66,18 @@ const Projects: React.FC = () => {
                         {project.title}
                       </h3>
 
-                      <p className="text-xs md:text-sm text-white/60 line-clamp-3 mb-8 font-light leading-relaxed group-hover:text-white/70 transition-colors">
+                      <p className="text-xs md:text-sm text-white/60 line-clamp-3 mb-5 font-light leading-relaxed group-hover:text-white/70 transition-colors">
                         {project.description}
                       </p>
+
+                      {caseStudySlug && (
+                        <a
+                          href={`#case-${caseStudySlug}`}
+                          className="inline-flex items-center gap-2 mb-6 text-[10px] font-bold uppercase tracking-widest text-cyan-400 hover:text-white transition-colors"
+                        >
+                          View case study <ArrowRight aria-hidden="true" size={14} />
+                        </a>
+                      )}
 
                       <div className="flex items-center justify-between pt-5 border-t border-white/10">
                         <div className="flex gap-4">
@@ -80,7 +95,7 @@ const Projects: React.FC = () => {
                           )}
                           <div className="flex items-center gap-1.5 text-white/50 text-[9px] font-bold">
                             <ArrowUpRight aria-hidden="true" size={10} className="text-cyan-400" />
-                            Repositorio
+                            Repositório
                           </div>
                         </div>
 
@@ -88,7 +103,7 @@ const Projects: React.FC = () => {
                           href={project.link}
                           target="_blank"
                           rel="noreferrer"
-                          aria-label={`Abrir repositorio ${project.title}`}
+                          aria-label={`Abrir repositório ${project.title}`}
                           className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-cyan-500/40"
                         >
                           <ExternalLink aria-hidden="true" size={16} />
@@ -97,7 +112,8 @@ const Projects: React.FC = () => {
                     </div>
                   </GlassCard>
                 </motion.div>
-              ))
+                );
+              })
             )}
           </AnimatePresence>
         </div>
