@@ -15,6 +15,6 @@ describe('CaseStudies', () => {
     }
 
     expect(screen.getAllByRole('heading', { name: 'Problema' })).toHaveLength(CASE_STUDIES.length);
-    expect(screen.getAllByRole('heading', { name: 'Decisoes tecnicas' })).toHaveLength(CASE_STUDIES.length);
+    expect(screen.getAllByRole('heading', { name: 'Decisões técnicas' })).toHaveLength(CASE_STUDIES.length);
   });
 });

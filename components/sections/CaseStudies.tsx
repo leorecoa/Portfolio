@@ -10,8 +10,8 @@ const CaseStudies: React.FC = () => (
     <div className="max-w-7xl mx-auto">
       <SectionTitle
         label="Case Studies"
-        title={<>Decisoes tecnicas <span className="text-cyan-400">em contexto</span></>}
-        subtitle="Problemas reais, escolhas de arquitetura e o estado atual de cada implementacao."
+        title={<>Decisões técnicas <span className="text-cyan-400">em contexto</span></>}
+        subtitle="Problemas reais, escolhas de arquitetura e o estado atual de cada implementação."
       />
 
       <div className="space-y-8">
@@ -44,7 +44,7 @@ const CaseStudies: React.FC = () => (
                   <p className="text-sm text-white/60 leading-relaxed">{caseStudy.problem}</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-3">Solucao</h4>
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-3">Solução</h4>
                   <p className="text-sm text-white/60 leading-relaxed">{caseStudy.solution}</p>
                 </div>
               </div>
@@ -68,7 +68,7 @@ const CaseStudies: React.FC = () => (
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Decisoes tecnicas</h4>
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Decisões técnicas</h4>
                   <ul className="space-y-3 text-sm text-white/60">
                     {caseStudy.technicalDecisions.map(decision => <li key={decision}>- {decision}</li>)}
                   </ul>

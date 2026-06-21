@@ -4,7 +4,20 @@ import { PROJECTS } from '../lib/constants';
 import Projects from '../components/sections/Projects';
 
 vi.mock('../hooks/useGithubRepos', () => ({
-  useGithubRepos: () => ({ repos: PROJECTS, loading: false }),
+  useGithubRepos: () => ({
+    repos: [
+      ...PROJECTS,
+      {
+        id: 99,
+        title: 'Projeto sem case',
+        description: 'Projeto usado para validar o fallback de navegação.',
+        image: 'https://example.com/project.jpg',
+        tags: ['TypeScript'],
+        link: 'https://github.com/leorecoa/projeto-sem-case',
+      },
+    ],
+    loading: false,
+  }),
 }));
 
 describe('Projects', () => {
@@ -13,7 +26,7 @@ describe('Projects', () => {
 
     for (const project of PROJECTS) {
       expect(screen.getByRole('heading', { name: project.title })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: `Abrir repositorio ${project.title}` })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: `Abrir repositório ${project.title}` })).toHaveAttribute(
         'href',
         project.link,
       );
