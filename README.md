@@ -71,6 +71,15 @@ npm run dev
 npm run build
 ```
 
+## Quality checks
+
+```bash
+npm run test:run
+npm run build
+```
+
+The project uses Vitest and React Testing Library for the first automated test layer.
+
 ## Deploy
 
 Publicado na Vercel:
