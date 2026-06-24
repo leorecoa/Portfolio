@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.leorecoa.devportfolio",
+      "sha256_cert_fingerprints":
+        ["68:88:8E:11:41:F7:0B:4A:5B:95:E0:C3:92:53:7F:95:38:44:62:79:83:DF:3E:C1:6C:3A:14:A2:E0:96:3D:37"]
+    }
+  }
+]
